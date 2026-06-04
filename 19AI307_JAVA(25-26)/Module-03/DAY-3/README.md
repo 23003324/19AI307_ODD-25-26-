@@ -1,67 +1,103 @@
-# Ex.No:1(C) LOOPING STATEMENT
+# Ex.No:3(C) ABSTRACTION
 
 ## QUESTION:
-Construct a right-angled triangle star pattern using for loop.
+Description:
+Create abstract class GameScore with method finalScore().
+Subclasses:
+
+ArcadeGame: score = baseScore + (level × 100)
+
+PuzzleGame: score = (attempts ≤ 3) ? 1000 - (attempts × 100) : 500
+
+Input Format:
+
+First line: 1 or 2
+Second line: base, level (or attempts)
+
+Output Format:
+
+Final score (int)
+
+
+
 ## AIM:
-To write a Java program using looping statements to print a right-angled triangle star pattern based on user input.
+To write a Java program using an abstract class GameScore with subclasses ArcadeGame and PuzzleGame, each implementing its own finalScore() method.
 
 ## ALGORITHM :
-1.	Start the program.
+1.	Create an abstract class GameScore with an abstract method finalScore().
+2.	Define subclass ArcadeGame where finalScore = baseScore + (level × 100).
+3.	Define subclass PuzzleGame where
+4.	If attempts ≤ 3, score = 1000 - (attempts × 100)
+5.	Else score = 500.
+6.	Take user input for game type and relevant values.
+7.	Display the final score based on game type.
 
-2.	Import the necessary package 'java.util'
-
-3. Read the number of rows from the user.
-
-4. Use an outer loop to iterate through each row.
-
-5. Use an inner loop to print stars (*) for each row.
-
-6. Move to the next line after printing stars for each row.
-
-7. End the program.
 
 
 ## PROGRAM:
  ```
 /*
-Program to implement a Looping Statement using Java
-Developed by: ANUBHARATHI SS
-RegisterNumber:212223040017
+Program to implement a Abstraction using Java
+Developed by: HARITHA RAMESH
+RegisterNumber: 212223100011
 */
 ```
 
 ## SOURCE CODE:
-
 ```
 import java.util.*;
-public class TrianglePattern
-{
-    public static void main(String args[])
-    {
-        Scanner sc=new Scanner(System.in);
-        int n=sc.nextInt();
-        for (int i = 1; i <= n; i++) 
-        {         
-            for (int j = 1; j <= i; j++) 
-            {      
-                System.out.print("* ");
-            }
-            System.out.println();              
+
+abstract class GameScore {
+    abstract int finalScore();
+}
+
+class ArcadeGame extends GameScore {
+    int base, level;
+    ArcadeGame(int base, int level) {
+        this.base = base;
+        this.level = level;
+    }
+    int finalScore() {
+        return base + (level * 100);
+    }
+}
+
+class PuzzleGame extends GameScore {
+    int attempts;
+    PuzzleGame(int attempts) {
+        this.attempts = attempts;
+    }
+    int finalScore() {
+        if (attempts <= 3)
+            return 1000 - (attempts * 100);
+        else
+            return 500;
+    }
+}
+
+public class prog {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int type = sc.nextInt();
+        if (type == 1) {
+            int base = sc.nextInt();
+            int level = sc.nextInt();
+            ArcadeGame game = new ArcadeGame(base, level);
+            System.out.println(game.finalScore());
+        } else if (type == 2) {
+            int attempts = sc.nextInt();
+            PuzzleGame game = new PuzzleGame(attempts);
+            System.out.println(game.finalScore());
         }
     }
 }
 ```
 
-
-
-
 ## OUTPUT:
-<img width="399" height="395" alt="image" src="https://github.com/user-attachments/assets/07286d0c-5174-4702-8d58-34b630bd23d6" />
-
-
+<img width="1147" height="386" alt="image" src="https://github.com/user-attachments/assets/4447ae81-3e1b-46a2-91a4-e2ad7316e6a6" />
 
 ## RESULT:
-Thus, the Java program using looping statements to print a right-angled triangle star pattern was successfully written, executed, and verified.
+The program successfully demonstrates abstraction and inheritance by computing the final score for different game types using subclass-specific logic.
 
 
 
